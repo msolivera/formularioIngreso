@@ -15,8 +15,8 @@ class TipoPersonaSeeder extends Seeder
      */
     public function run()
     {
-        /*$postulante = new TipoPersona;
+        $postulante = new TipoPersona;
         $postulante->nombre = 'Postulante';
-        $postulante->save();*/
+        $postulante->save();
     }
 }
