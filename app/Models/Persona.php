@@ -23,12 +23,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'primerApellido', 'segundoApellido',
         'apodo', 'fechaNacimiento',
         'cedula', 'credencialSerie',
-        'credencialNumero', 'domicilioActual',
-        'telefono_celular', 'domicilioAnterior',
-        'correoElectronico', 'seccionalPolicial',
+        'credencialNumero', 'sexo',
+        'domicilioActual', 'telefono_celular',
+        'domicilioAnterior', 'correoElectronico', 'seccionalPolicial',
     ];
 
-        /**
+    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
@@ -36,5 +36,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'ingresado',
     ];
-
 }

@@ -24,6 +24,7 @@ class CreatePersonaTable extends Migration
             $table->integer('cedula')->nullable();
             $table->string('credencialSerie')->nullable();
             $table->integer('credencialNumero')->nullable();
+            $table->string('sexo')->nullable();
             $table->string('domicilioActual')->nullable();
             $table->integer('telefono_celular')->nullable();
             $table->string('domicilioAnterior')->nullable();
