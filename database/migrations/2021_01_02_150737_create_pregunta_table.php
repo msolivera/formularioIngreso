@@ -15,7 +15,7 @@ class CreatePreguntaTable extends Migration
     {
         Schema::create('Pregunta', function (Blueprint $table) {
             $table->id();
-            $table->string('textoPregunta');
+            $table->string('textoPregunta')->unique();
             $table->timestamps();
         });
     }

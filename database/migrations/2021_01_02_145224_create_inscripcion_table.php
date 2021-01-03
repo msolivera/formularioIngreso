@@ -15,7 +15,7 @@ class CreateInscripcionTable extends Migration
     {
         Schema::create('incripcion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->timestamps();
         });
     }

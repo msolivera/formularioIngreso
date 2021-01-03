@@ -29,7 +29,7 @@ class CreatePersonaTable extends Migration
             $table->string('domicilioAnterior')->nullable();
             $table->string('correoElectronico')->nullable();
             $table->string('seccionalPolicial')->nullable();
-            $table->boolean('ingresado');
+            $table->boolean('ingresado')->default(false);
             $table->timestamps();
         });
     }
