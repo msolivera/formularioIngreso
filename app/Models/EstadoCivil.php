@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class EstadoCivil extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'estadocivil';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -21,5 +22,7 @@ class EstadoCivil extends Model implements AuthenticatableContract, Authorizable
     protected $fillable = [
         'nombre', 
     ];
+
+
 
 }

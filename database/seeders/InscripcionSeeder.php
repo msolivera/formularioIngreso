@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Inscripcion;
 
 
-class IncripcionSeeder extends Seeder
+class InscripcionSeeder extends Seeder
 {
     /**
      * Run the database seeds.

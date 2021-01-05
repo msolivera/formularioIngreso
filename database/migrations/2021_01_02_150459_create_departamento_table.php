@@ -13,7 +13,7 @@ class CreateDepartamentoTable extends Migration
      */
     public function up()
     {
-        Schema::create('Departamento', function (Blueprint $table) {
+        Schema::create('departamento', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateDepartamentoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Departamento');
+        Schema::dropIfExists('departamento');
     }
 }

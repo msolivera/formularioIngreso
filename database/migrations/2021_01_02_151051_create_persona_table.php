@@ -31,6 +31,15 @@ class CreatePersonaTable extends Migration
             $table->string('correoElectronico')->nullable();
             $table->string('seccionalPolicial')->nullable();
             $table->boolean('ingresado')->default(false);
+            //FKs
+            $table->unsignedInteger('tipo_persona_id')->nullable();
+            $table->unsignedInteger('inscripcion_id')->nullable();
+            $table->unsignedInteger('pais_id')->nullable();
+            $table->unsignedInteger('departamento_id')->nullable();
+            $table->unsignedInteger('estadoCivil_id')->nullable();
+            $table->unsignedInteger('ocupacion_id')->nullable();
+
+            
             $table->timestamps();
         });
     }

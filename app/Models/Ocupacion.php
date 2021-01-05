@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Ocupacion extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'ocupacion';
     use Authenticatable, Authorizable, HasFactory;
 
     /**

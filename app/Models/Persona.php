@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Persona extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'persona';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -19,13 +20,21 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'primerNombre', 'segundoNombre',
-        'primerApellido', 'segundoApellido',
-        'apodo', 'fechaNacimiento',
-        'cedula', 'credencialSerie',
-        'credencialNumero', 'sexo',
-        'domicilioActual', 'telefono_celular',
-        'domicilioAnterior', 'correoElectronico', 'seccionalPolicial',
+        'primerNombre', 
+        'segundoNombre',
+        'primerApellido', 
+        'segundoApellido',
+        'apodo', 
+        'fechaNacimiento',
+        'cedula', 
+        'credencialSerie',
+        'credencialNumero', 
+        'sexo',
+        'domicilioActual', 
+        'telefono_celular',
+        'domicilioAnterior', 
+        'correoElectronico', 
+        'seccionalPolicial',
     ];
 
     /**
@@ -36,4 +45,46 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
     protected $hidden = [
         'ingresado',
     ];
+
+    //Fks
+    public function tipoPersona()
+    {
+        return $this->hasOne(TipoPersona::class);
+    }   
+
+    public function inscripcion()
+    {
+        return $this->hasOne(Inscripcion::class);
+    } 
+
+    public function pais()
+    {
+        return $this->hasOne(Pais::class);
+    }   
+
+    public function departamento_domicilioActual()
+    {
+        return $this->hasOne(Departamento::class);
+    } 
+
+    public function estadoCivil()
+    {
+        return $this->hasOne(EstadoCivil::class);
+    }  
+
+    public function ocupacion()
+    {
+        return $this->hasOne(Ocupacion::class);
+    }  
+    
+    public function respuesta()
+    {
+        return $this->belongsTo(RespuestaPregunta::class);
+    }  
+
+    public function estudios_persona()
+    {
+        return $this->belongsTo(EstudioPersona::class);
+    }  
+
 }

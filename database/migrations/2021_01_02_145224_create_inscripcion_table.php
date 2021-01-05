@@ -13,7 +13,7 @@ class CreateInscripcionTable extends Migration
      */
     public function up()
     {
-        Schema::create('incripcion', function (Blueprint $table) {
+        Schema::create('inscripcion', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateInscripcionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incripcion');
+        Schema::dropIfExists('inscripcion');
     }
 }

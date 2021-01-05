@@ -17,6 +17,8 @@ class CreateRespuestaPreguntaTable extends Migration
             $table->id();
             $table->string('respuesta');
             $table->string('observaciones');
+            $table->unsignedInteger('persona_id')->nullable();
+            $table->unsignedInteger('pregunta_id')->nullable();
             $table->timestamps();
         });
     }

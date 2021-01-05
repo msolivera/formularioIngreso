@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParentezcoTable extends Migration
+class CreateParenteScoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateParentezcoTable extends Migration
      */
     public function up()
     {
-        Schema::create('Parentezco', function (Blueprint $table) {
+        Schema::create('Parentesco', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('postulante_id');
+            $table->unsignedInteger('familiar_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateParentezcoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Parentezco');
+        Schema::dropIfExists('Parentesco');
     }
 }

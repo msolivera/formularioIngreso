@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Pais extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'pais';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -21,5 +22,15 @@ class Pais extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $fillable = [
         'nombre',
     ];
+
+    public function direccion_extranjero()
+    {
+        return $this->belongsTo(DireccionExtranjero::class);
+    }  
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }  
 
 }

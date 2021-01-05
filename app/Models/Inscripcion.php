@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Inscripcion extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'inscripcion';
     use Authenticatable, Authorizable, HasFactory;
 
     /**

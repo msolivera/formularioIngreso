@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class Pregunta extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'pregunta';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -21,5 +22,15 @@ class Pregunta extends Model implements AuthenticatableContract, AuthorizableCon
     protected $fillable = [
         'textoPregunta', 
     ];
+
+    public function tipoPersonas()
+    {
+        return $this->hasOne(TipoPersona::class);
+    }
+
+    public function respuesta()
+    {
+        return $this->belongsTo(RespuestaPregunta::class);
+    }  
 
 }

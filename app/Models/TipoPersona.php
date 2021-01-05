@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class TipoPersona extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'tipopersona';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -21,5 +22,6 @@ class TipoPersona extends Model implements AuthenticatableContract, Authorizable
     protected $fillable = [
         'nombre',
     ];
+ 
 
 }

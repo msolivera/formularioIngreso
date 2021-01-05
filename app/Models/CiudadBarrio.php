@@ -11,6 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class CiudadBarrio extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    protected $table = 'ciudad_barrio';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -21,5 +22,10 @@ class CiudadBarrio extends Model implements AuthenticatableContract, Authorizabl
     protected $fillable = [
         'nombre',
     ];
+
+    public function departamento()
+    {
+        return $this->hasMany(Departamento::class);
+    }
 
 }

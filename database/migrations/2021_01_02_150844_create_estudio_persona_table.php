@@ -17,6 +17,8 @@ class CreateEstudioPersonaTable extends Migration
             $table->id();
             $table->string('anioEstudio');
             $table->string('nombreInstituto');
+            $table->unsignedInteger('persona_id')->nullable();
+            $table->unsignedInteger('tipo_estudio_id')->nullable();
             $table->timestamps();
         });
     }

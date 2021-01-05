@@ -643,7 +643,7 @@ class PaisSeeder extends Seeder
         $SaintKittsNevis->save();
 
         $Samoa = new Pais();
-        $Samoa->nombre = 'Paraguay';
+        $Samoa->nombre = 'Samoa';
         $Samoa->save();
 
         $SanMarino = new Pais();
