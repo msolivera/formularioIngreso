@@ -39,7 +39,7 @@ class EstadoCivilController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required|unique:estadocivil',
+            'nombre' => 'required|unique:estadocivil|regex:/^[a-zA-Z]+$/|min:4',
         ];
 
         $this->validate($request, $rules);

@@ -39,8 +39,8 @@ class CiudadBarrioController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required',
-            'departamento_id' => 'required'
+            'nombre' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'departamento_id' => 'required|exists:departamento,id'
         ];
 
         $this->validate($request, $rules);

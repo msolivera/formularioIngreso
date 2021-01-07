@@ -40,7 +40,7 @@ class TipoPersonaController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required|unique:tipopersona',
+            'nombre' => 'required|unique:tipopersona|regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/',
         ];
 
         $this->validate($request, $rules);

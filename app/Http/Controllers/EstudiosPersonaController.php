@@ -39,7 +39,10 @@ class EstudiosPersonaController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required',
+            'anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'tipoEstudio_id' => 'required|exists:tipoEstudio,id',
+            'persona_id' => 'required|exists:persona,id',
         ];
 
         $this->validate($request, $rules);

@@ -67,7 +67,7 @@ class PaisController extends Controller
     {
 
         $rules = [
-            'nombre' => 'required|unique:pais|min:5',
+            'nombre' => 'required|unique:pais|min:5|regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/',
         ];
         $this->validate($request, $rules);
         $pais  = Pais::findOrFail($pais);

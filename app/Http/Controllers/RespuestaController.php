@@ -67,7 +67,10 @@ class RespuestaController extends Controller
     {
 
         $rules = [
-            'respuesta' => 'required',
+            'respuesta' => 'required|in:SI,NO',
+            'observaciones' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'persona_id' => 'required|exists:persona,id',
+            'pregunta_id' => 'required|exists:pregunta,id',
         ];
         $this->validate($request, $rules);
         $respuesta  = RespuestaPregunta::findOrFail($respuesta);

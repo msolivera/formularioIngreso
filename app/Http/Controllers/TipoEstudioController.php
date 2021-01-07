@@ -39,7 +39,8 @@ class TipoEstudioController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required|unique:tipoestudio',
+            'nombre' => 'required|unique:tipoestudio|regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            
         ];
 
         $this->validate($request, $rules);

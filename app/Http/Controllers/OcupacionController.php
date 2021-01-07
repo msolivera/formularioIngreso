@@ -39,7 +39,11 @@ class OcupacionController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required',
+            'cargo_funcion'  => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'ente' => 'in:Publico,Privado',
+            'nombreEmpresa'  => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'direccion'  => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'persona_id' => 'required|exists:persona,id',
         ];
 
         $this->validate($request, $rules);

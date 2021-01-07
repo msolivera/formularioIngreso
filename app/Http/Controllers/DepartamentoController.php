@@ -39,7 +39,7 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required|unique:departamento',
+            'nombre' => 'required|unique:departamento|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
         ];
 
         $this->validate($request, $rules);

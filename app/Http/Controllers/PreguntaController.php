@@ -39,7 +39,8 @@ class PreguntaController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required',
+            'textoPregunta' => 'required|regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'tipopersona_id' => 'required|exists:tipopersona,id',
         ];
 
         $this->validate($request, $rules);

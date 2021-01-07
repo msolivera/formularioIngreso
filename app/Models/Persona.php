@@ -43,7 +43,7 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $hidden = [
-        'ingresado',
+        'ingresado','tipoPersona_id'
     ];
 
     //Fks
@@ -67,6 +67,11 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->hasOne(Departamento::class);
     } 
 
+    public function ciudad_domicilioActual()
+    {
+        return $this->hasOne(CiudadBarrio::class);
+    } 
+
     public function estadoCivil()
     {
         return $this->hasOne(EstadoCivil::class);
@@ -76,6 +81,12 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
     {
         return $this->hasOne(Ocupacion::class);
     }  
+    
+    public function direccionExtranjero()
+    {
+        return $this->hasOne(DireccionExtranjero::class);
+    } 
+    
     
     public function respuesta()
     {

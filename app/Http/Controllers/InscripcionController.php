@@ -39,7 +39,7 @@ class InscripcionController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required|unique:inscripcion',
+            'nombre' => 'required|unique:inscripcion|regex:/^[a-zA-Z]+$/|min:4',
         ];
 
         $this->validate($request, $rules);

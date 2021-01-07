@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Persona;
+use App\Rules\ValidCI;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use Illuminate\Http\Response;
@@ -37,22 +39,38 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
+
+        //controlar el tipo de rules segun la persona tipo
         $rules = [
-            'primerNombre' => 'required',
-            'primerApellido' => 'required',
-            'segundoApellido' => 'required',
-            'fechaNacimiento' => 'required',
-            'cedula' => 'required',
-            'sexo' => 'required',
-            'domicilioActual' => 'required',
-            'telefono_celular' => 'required',
-            'estadoCivil_id' => 'required',
+            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'segundoNombre' => 'regex:/^[a-zA-Z]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'segundoApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
+            'fechaNacimiento' => 'required|date',
+            'cedula' => [
+                'integer',
+                'required',
+                new ValidCI,
+            ],
+            'credencialSerie' => 'regex:/^[a-zA-Z]+$/|min:3',
+            'credencialNumero' => 'integer|min:0|max:1000000',
+            'sexo' => 'in:Femenino,Masculino',
+            'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'telefono_celular' => 'numeric',
+            'correoElectronico' => 'email',
+            'seccionalPolicial' => 'integer',
+            'estadocivil_id' => 'required|exists:estadocivil,id', //me fijo que el dato exista en la otra tabla de la base
             'pais_id' => 'required',
+            'tipopersona_id' => 'required|exists:tipopersona,id',
+            'inscripcion_id' => 'required|exists:inscripcion,id',
+            'departamento_id' => 'required|exists:departamento,id',
+            'ciudadBarrio_id' => 'required|exists:ciudad_barrio,id',
+
+
         ];
-        
-    
-         	 	
-        
+
 
         $this->validate($request, $rules);
 

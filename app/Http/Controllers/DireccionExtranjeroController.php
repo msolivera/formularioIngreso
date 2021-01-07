@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\DireccionExtranjero;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
@@ -38,7 +39,10 @@ class DireccionExtranjeroController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre' => 'required',
+            'nombre_ciudadnombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
+            'pais_id' => 'required|exists:pais,id',
+
         ];
 
         $this->validate($request, $rules);
