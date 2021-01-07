@@ -20,7 +20,7 @@ class RespuestaPregunta extends Model implements AuthenticatableContract, Author
      * @var array
      */
     protected $fillable = [
-        'respuesta', 'observaciones',
+        'respuesta', 'observaciones','persona_id','pregunta_id'
     ];
 
     public function personas()

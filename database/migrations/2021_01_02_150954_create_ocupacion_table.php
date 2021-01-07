@@ -19,6 +19,7 @@ class CreateOcupacionTable extends Migration
             $table->string('ente');
             $table->string('nombreEmpresa');
             $table->string('direccion');
+            $table->unsignedInteger('persona_id')->nullable();
             $table->timestamps();
         });
     }

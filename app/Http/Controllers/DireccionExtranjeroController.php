@@ -39,9 +39,9 @@ class DireccionExtranjeroController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nombre_ciudadnombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
-            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
-            'pais_id' => 'required|exists:pais,id',
+            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'pais_id' => 'required|exists:pais,id'
 
         ];
 

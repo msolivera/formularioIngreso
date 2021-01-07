@@ -67,6 +67,7 @@ class PersonaController extends Controller
             'inscripcion_id' => 'required|exists:inscripcion,id',
             'departamento_id' => 'required|exists:departamento,id',
             'ciudadBarrio_id' => 'required|exists:ciudad_barrio,id',
+            'direccion_extranjero' =>'exists:direccionextranjeros,id'
 
 
         ];

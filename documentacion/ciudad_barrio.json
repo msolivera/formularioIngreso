@@ -1,8 +1,6 @@
 [
-{"type":"header","version":"5.0.4","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"formularioingreso"},
-{"type":"table","name":"ciudad_barrio","database":"formularioingreso","data":
-[
+
+
 {"id":"1","nombre":"PASO CAMPAMENTO","departamento_id":"1","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"},
 {"id":"2","nombre":"RINCON DE PACHECO","departamento_id":"1","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"},
 {"id":"3","nombre":"TOPADOR","departamento_id":"1","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"},
@@ -2095,6 +2093,6 @@
 {"id":"2090","nombre":"BAÑADO DE ORO","departamento_id":"19","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"},
 {"id":"2091","nombre":"CAÑADA CHICA","departamento_id":"19","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"},
 {"id":"2092","nombre":"CAÑADA DEL SAUCE","departamento_id":"19","created_at":"0000-00-00 00:00:00","updated_at":"0000-00-00 00:00:00"}
-]
-}
+
+
 ]

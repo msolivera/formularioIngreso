@@ -35,6 +35,11 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
         'domicilioAnterior', 
         'correoElectronico', 
         'seccionalPolicial',
+        'estadocivil_id',
+        'pais_id',
+        'tipopersona_id',
+        'inscripcion_id',
+        'departamento_id'
     ];
 
     /**

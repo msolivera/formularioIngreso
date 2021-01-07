@@ -20,7 +20,7 @@ class CiudadBarrio extends Model implements AuthenticatableContract, Authorizabl
      * @var array
      */
     protected $fillable = [
-        'nombre',
+        'nombre', 'departamento_id'
     ];
 
     public function departamento()

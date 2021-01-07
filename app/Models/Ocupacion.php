@@ -22,6 +22,7 @@ class Ocupacion extends Model implements AuthenticatableContract, AuthorizableCo
     protected $fillable = [
         'cargo_funcion', 'ente', 
         'nombreEmpresa', 'direccion',
+        'persona_id'
     ];
 
 

@@ -20,7 +20,7 @@ class EstudioPersona extends Model implements AuthenticatableContract, Authoriza
      * @var array
      */
     protected $fillable = [
-        'anioEstudio', 'nombreInstituto',
+        'anioEstudio', 'nombreInstituto','tipo_estudio_id', "persona_id"
     ];
 
     public function persona()

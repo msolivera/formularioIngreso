@@ -21,7 +21,7 @@ class DireccionExtranjero extends Model implements AuthenticatableContract, Auth
      * @var array
      */
     protected $fillable = [
-        'nombre_ciudadnombre_ciudad', 'nombre_departamento_estado',
+        'nombre_ciudad', 'nombre_departamento_estado','pais_id'
     ];
 
     public function pais()
