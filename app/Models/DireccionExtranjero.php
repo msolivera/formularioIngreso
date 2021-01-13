@@ -21,13 +21,15 @@ class DireccionExtranjero extends Model implements AuthenticatableContract, Auth
      * @var array
      */
     protected $fillable = [
-        'nombre_ciudad', 'nombre_departamento_estado','pais_id'
+        'nombre_ciudad', 'nombre_departamento_estado', 'pais_id', 'persona_id'
     ];
 
     public function pais()
     {
         return $this->hasOne(Pais::class);
     }
-
-
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
 }

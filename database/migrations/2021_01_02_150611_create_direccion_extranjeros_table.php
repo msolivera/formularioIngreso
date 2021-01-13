@@ -18,6 +18,7 @@ class CreateDireccionExtranjerosTable extends Migration
             $table->string('nombre_departamento_estado');
             $table->string('nombre_ciudad');
             $table->unsignedInteger('pais_id')->nullable();
+            $table->unsignedInteger('persona_id')->nullable();
             $table->timestamps();
         });
     }

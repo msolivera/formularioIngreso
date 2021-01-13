@@ -41,7 +41,8 @@ class DireccionExtranjeroController extends Controller
         $rules = [
             'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'pais_id' => 'required|exists:pais,id'
+            'pais_id' => 'required|exists:pais,id',
+            'persona_id' => 'required|exists:persona,id'
 
         ];
 

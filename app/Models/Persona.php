@@ -20,26 +20,27 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'primerNombre', 
+        'primerNombre',
         'segundoNombre',
-        'primerApellido', 
+        'primerApellido',
         'segundoApellido',
-        'apodo', 
+        'apodo',
         'fechaNacimiento',
-        'cedula', 
+        'cedula',
         'credencialSerie',
-        'credencialNumero', 
+        'credencialNumero',
         'sexo',
-        'domicilioActual', 
+        'domicilioActual',
         'telefono_celular',
-        'domicilioAnterior', 
-        'correoElectronico', 
+        'domicilioAnterior',
+        'correoElectronico',
         'seccionalPolicial',
         'estadocivil_id',
         'pais_id',
         'tipopersona_id',
         'inscripcion_id',
-        'departamento_id'
+        'departamento_id',
+        'cuidadBarrio_id'
     ];
 
     /**
@@ -48,59 +49,58 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $hidden = [
-        'ingresado','tipoPersona_id'
+        'ingresado', 'tipoPersona_id'
     ];
 
     //Fks
     public function tipoPersona()
     {
         return $this->hasOne(TipoPersona::class);
-    }   
+    }
 
     public function inscripcion()
     {
         return $this->hasOne(Inscripcion::class);
-    } 
+    }
 
     public function pais()
     {
         return $this->hasOne(Pais::class);
-    }   
+    }
 
     public function departamento_domicilioActual()
     {
         return $this->hasOne(Departamento::class);
-    } 
+    }
 
     public function ciudad_domicilioActual()
     {
         return $this->hasOne(CiudadBarrio::class);
-    } 
+    }
 
     public function estadoCivil()
     {
         return $this->hasOne(EstadoCivil::class);
-    }  
+    }
 
     public function ocupacion()
     {
         return $this->hasOne(Ocupacion::class);
-    }  
-    
+    }
+
     public function direccionExtranjero()
     {
         return $this->hasOne(DireccionExtranjero::class);
-    } 
-    
-    
+    }
+
+
     public function respuesta()
     {
         return $this->belongsTo(RespuestaPregunta::class);
-    }  
+    }
 
     public function estudios_persona()
     {
         return $this->belongsTo(EstudioPersona::class);
-    }  
-
+    }
 }

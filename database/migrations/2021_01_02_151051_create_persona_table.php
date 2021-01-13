@@ -37,9 +37,9 @@ class CreatePersonaTable extends Migration
             $table->unsignedInteger('pais_id')->nullable();
             $table->unsignedInteger('departamento_id')->nullable();
             $table->unsignedInteger('estadoCivil_id')->nullable();
-            $table->unsignedInteger('ocupacion_id')->nullable();
+            $table->unsignedInteger('ciudadBarrio_id')->nullable();
 
-            
+
             $table->timestamps();
         });
     }

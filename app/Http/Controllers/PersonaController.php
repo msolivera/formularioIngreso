@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\DireccionExtranjero;
 use App\Rules\ValidCI;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
@@ -63,19 +64,55 @@ class PersonaController extends Controller
             'seccionalPolicial' => 'integer',
             'estadocivil_id' => 'required|exists:estadocivil,id', //me fijo que el dato exista en la otra tabla de la base
             'pais_id' => 'required',
-            'tipopersona_id' => 'required|exists:tipopersona,id',
+            'tipo_persona_id' => 'required|exists:tipopersona,id',
             'inscripcion_id' => 'required|exists:inscripcion,id',
-            'departamento_id' => 'required|exists:departamento,id',
-            'ciudadBarrio_id' => 'required|exists:ciudad_barrio,id',
-            'direccion_extranjero' =>'exists:direccionextranjeros,id'
-
+            'departamento_id' => 'exists:departamento,id',
+            'ciudadBarrio_id' => 'exists:ciudad_barrio,id',
+            //Esto es para hacer el insert en la talba de direccion si es extranjero
+            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
 
         ];
 
-
         $this->validate($request, $rules);
+        //CREO PERSONA Y DIRECCION DE EXTRANJERO A MANO
+        $persona = new Persona;
+        $persona->primerNombre = $request->primerNombre;
+        $persona->segundoNombre = $request->segundoNombre;
+        $persona->primerApellido = $request->primerApellido;
+        $persona->segundoApellido = $request->segundoApellido;
+        $persona->apodo = $request->apodo;
+        $persona->fechaNacimiento = $request->fechaNacimiento;
+        $persona->cedula = $request->cedula;
+        $persona->credencialSerie = $request->credencialSerie;
+        $persona->credencialNumero = $request->credencialNumero;
+        $persona->sexo = $request->sexo;
+        $persona->domicilioActual = $request->domicilioActual;
+        $persona->domicilioAnterior = $request->domicilioAnterior;
+        $persona->telefono_celular = $request->telefono_celular;
+        $persona->correoElectronico = $request->correoElectronico;
+        $persona->seccionalPolicial = $request->seccionalPolicial;
+        $persona->estadocivil_id = $request->estadocivil_id;
+        $persona->pais_id = $request->pais_id;
+        $persona->tipo_persona_id = $request->tipo_persona_id;
+        $persona->inscripcion_id = $request->inscripcion_id;
+        $persona->departamento_id = $request->departamento_id;
+        $persona->ciudadBarrio_id = $request->ciudadBarrio_id;
+        $persona->save();
 
-        $persona = Persona::create($request->all());
+
+        $direccionExtranjero = new DireccionExtranjero;
+        $direccionExtranjero->nombre_ciudad = $request->nombre_ciudad;
+        $direccionExtranjero->nombre_departamento_estado = $request->nombre_departamento_estado;
+        $direccionExtranjero->pais_id = $request->pais_id;
+        $direccionExtranjero->persona_id = $persona->id;
+
+        $direccionExtranjero->save();
+
+
+        ///ASI ESTABA ANTES SIN EL CREADO A MANO:
+        /* $persona = Persona::create($request->all());*/
+
 
         return $this->successResponse($persona, Response::HTTP_CREATED);
     }
