@@ -41,7 +41,7 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
 
-        //controlar el tipo de rules segun la persona tipo
+
         $rules = [
             'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
             'segundoNombre' => 'regex:/^[a-zA-Z]+$/|min:4',
@@ -54,18 +54,18 @@ class PersonaController extends Controller
                 'required',
                 new ValidCI,
             ],
-            'credencialSerie' => 'regex:/^[a-zA-Z]+$/|min:3',
-            'credencialNumero' => 'integer|min:0|max:1000000',
-            'sexo' => 'in:Femenino,Masculino',
+            'credencialSerie' => 'required|regex:/^[a-zA-Z]+$/|min:3',
+            'credencialNumero' => 'required|integer|min:0|max:1000000',
+            'sexo' => 'required|in:Femenino,Masculino',
             'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'telefono_celular' => 'numeric',
+            'telefono_celular' => 'required|numeric',
             'correoElectronico' => 'email',
             'seccionalPolicial' => 'integer',
             'estadocivil_id' => 'required|exists:estadocivil,id', //me fijo que el dato exista en la otra tabla de la base
-            'pais_id' => 'required',
+            'pais_id' => 'required|exists:pais,id',
             'tipo_persona_id' => 'required|exists:tipopersona,id',
-            'inscripcion_id' => 'required|exists:inscripcion,id',
+            'inscripcion_id' => 'exists:inscripcion,id',
             'departamento_id' => 'exists:departamento,id',
             'ciudadBarrio_id' => 'exists:ciudad_barrio,id',
             //Esto es para hacer el insert en la talba de direccion si es extranjero
@@ -115,6 +115,29 @@ class PersonaController extends Controller
 
 
         return $this->successResponse($persona, Response::HTTP_CREATED);
+    }
+
+
+    public function storeOtrosFliares(Request $request)
+    {
+
+        $rules = [
+            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'fechaNacimiento' => 'date',
+            'tipo_persona_id' => 'required|exists:tipopersona,id'
+        ];
+        $this->validate($request, $rules);
+
+        $familiar = new Persona();
+
+        $familiar->primerNombre = $request->primerNombre;
+        $familiar->primerApellido = $request->primerApellido;
+        $familiar->fechaNacimiento = $request->fechaNacimiento;
+        $familiar->tipo_persona_id = $request->tipo_persona_id;
+        $familiar->save();
+
+        return $this->successResponse($familiar, Response::HTTP_CREATED);
     }
 
     /**

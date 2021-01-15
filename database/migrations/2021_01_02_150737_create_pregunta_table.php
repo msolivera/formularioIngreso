@@ -17,6 +17,8 @@ class CreatePreguntaTable extends Migration
             $table->id();
             $table->string('textoPregunta')->unique();
             $table->unsignedInteger('tipo_persona_id')->nullable();
+            $table->unsignedInteger('tipo_inscripccion_id')->nullable();
+
             $table->timestamps();
         });
     }

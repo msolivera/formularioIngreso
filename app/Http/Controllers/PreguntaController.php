@@ -40,7 +40,8 @@ class PreguntaController extends Controller
     {
         $rules = [
             'textoPregunta' => 'unique:pregunta|required|regex:/^[A-Za-z0-9\-! ,?¿@\.\(\)]+$/|min:4',
-            'tipopersona_id' => 'required|exists:tipopersona,id',
+            'tipo_persona_id' => 'required|exists:tipopersona,id',
+            'tipo_incripcion_id' => 'exists:inscripcion,id',
         ];
 
         $this->validate($request, $rules);

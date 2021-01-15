@@ -40,55 +40,138 @@ class EstudiosPersonaController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            'anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,ñ@\.\(\)]+$/',
+            'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'tipo_estudio_id' => 'required|exists:tipoEstudio,id',
+            'persona_id' => 'required|exists:persona,id',
+        ];
+
+        $this->validate($request, $rules);
+
+        $estudios = new EstudioPersona();
+
+        $estudios->anioEstudio = $request->anioEstudio;
+        $estudios->nombreInstituto = $request->nombreInstituto;
+        $estudios->tipo_estudio_id = $request->tipo_estudio_id;
+        $estudios->persona_id = $request->persona_id;
+        $estudios->save();
+
+        return $this->successResponse($estudios, Response::HTTP_CREATED);
+    }
+
+    public function storeEstudiosBasicos(Request $request)
+    {
+        /*$rules = [
+
             'anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,ñ@\.\(\)]+$/|min:4',
             'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'tipo_estudio_id' => 'required|exists:tipoEstudio,id',
             'persona_id' => 'required|exists:persona,id',
         ];
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules);*/
 
-        $estudios = EstudioPersona::create($request->all());
+        $primeroPrimaria = new EstudioPersona();
 
-        return $this->successResponse($estudios, Response::HTTP_CREATED);
+        $primeroPrimaria->anioEstudio = $request->primeroPrimaria_anioEstudio;
+        $primeroPrimaria->nombreInstituto = $request->primeroPrimaria_nombreInstituto;
+        $primeroPrimaria->tipo_estudio_id = $request->primeroPrimaria_tipo_estudio_id;
+        $primeroPrimaria->persona_id = $request->primeroPrimaria_persona_id;
+        $primeroPrimaria->save();
+
+        $segundoPrimaria = new EstudioPersona();
+
+        $segundoPrimaria->anioEstudio = $request->segundoPrimaria_anioEstudio;
+        $segundoPrimaria->nombreInstituto = $request->segundoPrimaria_nombreInstituto;
+        $segundoPrimaria->tipo_estudio_id = $request->segundoPrimaria_tipo_estudio_id;
+        $segundoPrimaria->persona_id = $request->segundoPrimaria_persona_id;
+        $segundoPrimaria->save();
+
+        $terceroPrimaria = new EstudioPersona();
+
+        $terceroPrimaria->anioEstudio = $request->terceroPrimaria_anioEstudio;
+        $terceroPrimaria->nombreInstituto = $request->terceroPrimaria_nombreInstituto;
+        $terceroPrimaria->tipo_estudio_id = $request->terceroPrimaria_tipo_estudio_id;
+        $terceroPrimaria->persona_id = $request->terceroPrimaria_persona_id;
+        $terceroPrimaria->save();
+
+
+        $cuartoPrimaria = new EstudioPersona();
+
+        $cuartoPrimaria->anioEstudio = $request->cuartoPrimaria_anioEstudio;
+        $cuartoPrimaria->nombreInstituto = $request->cuartoPrimaria_nombreInstituto;
+        $cuartoPrimaria->tipo_estudio_id = $request->cuartoPrimaria_tipo_estudio_id;
+        $cuartoPrimaria->persona_id = $request->cuartoPrimaria_persona_id;
+        $cuartoPrimaria->save();
+
+        $quintoPrimaria = new EstudioPersona();
+
+        $quintoPrimaria->anioEstudio = $request->quintoPrimaria_anioEstudio;
+        $quintoPrimaria->nombreInstituto = $request->quintoPrimaria_nombreInstituto;
+        $quintoPrimaria->tipo_estudio_id = $request->quintoPrimaria_tipo_estudio_id;
+        $quintoPrimaria->persona_id = $request->quintoPrimaria_persona_id;
+        $quintoPrimaria->save();
+
+        $sextoPrimaria = new EstudioPersona();
+
+        $sextoPrimaria->anioEstudio = $request->sextoPrimaria_anioEstudio;
+        $sextoPrimaria->nombreInstituto = $request->sextoPrimaria_nombreInstituto;
+        $sextoPrimaria->tipo_estudio_id = $request->sextoPrimaria_tipo_estudio_id;
+        $sextoPrimaria->persona_id = $request->sextoPrimaria_persona_id;
+        $sextoPrimaria->save();
+
+        $primeroSecu = new EstudioPersona();
+
+        $primeroSecu->anioEstudio = $request->primeroSecu_anioEstudio;
+        $primeroSecu->nombreInstituto = $request->primeroSecu_nombreInstituto;
+        $primeroSecu->tipo_estudio_id = $request->primeroSecu_tipo_estudio_id;
+        $primeroSecu->persona_id = $request->primeroSecu_persona_id;
+        $primeroSecu->save();
+
+        $segundoSecu = new EstudioPersona();
+
+        $segundoSecu->anioEstudio = $request->segundoSecu_anioEstudio;
+        $segundoSecu->nombreInstituto = $request->segundoSecu_nombreInstituto;
+        $segundoSecu->tipo_estudio_id = $request->segundoSecu_tipo_estudio_id;
+        $segundoSecu->persona_id = $request->segundoSecu_persona_id;
+        $segundoSecu->save();
+
+        $terceroSecu = new EstudioPersona();
+
+        $terceroSecu->anioEstudio = $request->terceroSecu_anioEstudio;
+        $terceroSecu->nombreInstituto = $request->terceroSecu_nombreInstituto;
+        $terceroSecu->tipo_estudio_id = $request->terceroSecu_tipo_estudio_id;
+        $terceroSecu->persona_id = $request->terceroSecu_persona_id;
+        $terceroSecu->save();
+
+        $cuartoBach = new EstudioPersona();
+
+        $cuartoBach->anioEstudio = $request->cuartoBach_anioEstudio;
+        $cuartoBach->nombreInstituto = $request->cuartoBach_nombreInstituto;
+        $cuartoBach->tipo_estudio_id = $request->cuartoBach_tipo_estudio_id;
+        $cuartoBach->persona_id = $request->cuartoBach_persona_id;
+        $cuartoBach->save();
+
+        $quintoBach = new EstudioPersona();
+
+        $quintoBach->anioEstudio = $request->quintoBach_anioEstudio;
+        $quintoBach->nombreInstituto = $request->quintoBach_nombreInstituto;
+        $quintoBach->tipo_estudio_id = $request->quintoBach_tipo_estudio_id;
+        $quintoBach->persona_id = $request->quintoBach_persona_id;
+        $quintoBach->save();
+
+
+        $sextoBach = new EstudioPersona();
+
+        $sextoBach->anioEstudio = $request->sextoBach_anioEstudio;
+        $sextoBach->nombreInstituto = $request->sextoBach_nombreInstituto;
+        $sextoBach->tipo_estudio_id = $request->sextoBach_tipo_estudio_id;
+        $sextoBach->persona_id = $request->sextoBach_persona_id;
+        $sextoBach->save();
+
+
+        return $this->successResponse($sextoBach, Response::HTTP_CREATED);
     }
-
-
-    public function storeBasicos(Request $request)
-    {
-        $rules = [
-            '"anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,ñ@\.\(\)]+$/|min:4',
-            'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'tipo_estudio_id' => 'required|exists:tipoEstudio,id',
-            'persona_id' => 'required|exists:persona,id',
-
-
-        ];
-
-        //'primeroPrimaria_nombreInstituto:',
-        //' segundoPrimaria_nombreInstituto: ""',
-        //'terceroPrimaria_nombreInstituto: ""',
-        //cuartoPrimaria_nombreInstituto
-        //quintoPrimaria_nombreInstituto
-        //sextoPrimaria_nombreInstituto
-        //primeroSecu_nombreInstituto
-        //segundoSecu_nombreInstituto
-        //terceroSecu_nombreInstituto
-        //cuartoBach_nombreInstituto
-        //quintoBach_nombreInstituto
-        //sextoBach_nombreInstituto
-
-        $this->validate($request, $rules);
-
-        /**
-         * $persona = new Persona;
-         *$persona->primerNombre = $request->primerNombre;
-         *$persona->save();
-         *return $this->successResponse($persona, Response::HTTP_CREATED);
-         */
-    }
-
-    /** HACER EL ESTUDIO PARTICULAR ACA */
 
     /**
      * mostrar info de un estudios en particular

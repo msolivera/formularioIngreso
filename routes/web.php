@@ -119,7 +119,7 @@ $router->delete('/ciudad/{ciudad}', 'CiudadBarrioController@destroy');
  */
 $router->get('/estudios', 'EstudiosPersonaController@index');
 $router->post('/estudio', 'EstudiosPersonaController@store');
-$router->post('/estudiosBasicos', 'EstudiosPersonaController@storeBasicos');
+$router->post('/estudiosBasicos', 'EstudiosPersonaController@storeEstudiosBasicos');
 $router->get('/estudio/{estudio}', 'EstudiosPersonaController@show');
 $router->put('/estudio/{estudio}', 'EstudiosPersonaController@update');
 $router->patch('/estudio/{estudio}', 'EstudiosPersonaController@update');
@@ -150,6 +150,7 @@ $router->delete('/respuesta/{respuesta}', 'RespuestaController@destroy');
  */
 $router->get('/personas', 'PersonaController@index');
 $router->post('/persona', 'PersonaController@store');
+$router->post('/familiar', 'PersonaController@storeOtrosFliares');
 $router->get('/persona/{persona}', 'PersonaController@show');
 $router->put('/persona/{persona}', 'PersonaController@update');
 $router->patch('/persona/{persona}', 'PersonaController@update');

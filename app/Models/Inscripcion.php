@@ -23,4 +23,12 @@ class Inscripcion extends Model implements AuthenticatableContract, Authorizable
         'nombre',
     ];
 
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
+    public function pregunta()
+    {
+        return $this->belongsTo(Pregunta::class);
+    }
 }

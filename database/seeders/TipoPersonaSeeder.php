@@ -66,5 +66,9 @@ class TipoPersonaSeeder extends Seeder
         $tutorLegal = new TipoPersona;
         $tutorLegal->nombre = 'Tutor Legal';
         $tutorLegal->save();
+
+        $varios04 = new TipoPersona;
+        $varios04->nombre = 'Postulante, madre, padre y pareja';
+        $varios04->save();
     }
 }

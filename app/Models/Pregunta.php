@@ -20,7 +20,7 @@ class Pregunta extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'textoPregunta', 
+        'textoPregunta',
     ];
 
     public function tipoPersonas()
@@ -28,9 +28,13 @@ class Pregunta extends Model implements AuthenticatableContract, AuthorizableCon
         return $this->hasOne(TipoPersona::class);
     }
 
+    public function tipoInscripcion()
+    {
+        return $this->hasOne(Inscripcion::class);
+    }
+
     public function respuesta()
     {
         return $this->belongsTo(RespuestaPregunta::class);
-    }  
-
+    }
 }
