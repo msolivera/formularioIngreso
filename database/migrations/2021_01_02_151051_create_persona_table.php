@@ -20,7 +20,7 @@ class CreatePersonaTable extends Migration
             $table->string('primerApellido');
             $table->string('segundoApellido')->nullable();
             $table->string('apodo')->nullable();
-            $table->date('fechaNacimiento');
+            $table->string('fechaNacimiento');
             $table->integer('cedula')->nullable();
             $table->string('credencialSerie')->nullable();
             $table->integer('credencialNumero')->nullable();

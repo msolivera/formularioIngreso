@@ -62,6 +62,19 @@ class CiudadBarrioController extends Controller
     }
 
     /**
+     * Funcion que trae las Ciudades segun un id de departamento dado
+     */
+
+    public function indexPorDepartamento($idDepa)
+    {
+        $ciudad_barrio = CiudadBarrio::where('departamento_id', $idDepa)->get();
+
+        return $this->successResponse($ciudad_barrio);
+    }
+
+
+
+    /**
      * actualiza informacion de un ciudad_barrio
      */
     public function update(Request $request, $ciudad_barrio)

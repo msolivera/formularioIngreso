@@ -103,4 +103,9 @@ class Persona extends Model implements AuthenticatableContract, AuthorizableCont
     {
         return $this->belongsTo(EstudioPersona::class);
     }
+
+    public function parentesco()
+    {
+        return $this->belongsTo(Parentesco::class);
+    }
 }

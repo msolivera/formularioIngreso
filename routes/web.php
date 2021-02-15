@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CiudadBarrio;
 use Illuminate\Support\Str;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
@@ -108,6 +109,7 @@ $router->delete('/direccion/{direccion}', 'DireccionExtranjeroController@destroy
  * Rutas de  ciudad barrio
  */
 $router->get('/ciudades', 'CiudadBarrioController@index');
+$router->get('/cuidadPorDepa/{idDepa}', 'CiudadBarrioController@indexPorDepartamento');
 $router->post('/ciudad', 'CiudadBarrioController@store');
 $router->get('/ciudad/{ciudad}', 'CiudadBarrioController@show');
 $router->put('/ciudad/{ciudad}', 'CiudadBarrioController@update');
@@ -118,6 +120,7 @@ $router->delete('/ciudad/{ciudad}', 'CiudadBarrioController@destroy');
  * Rutas de  Estudios Persona
  */
 $router->get('/estudios', 'EstudiosPersonaController@index');
+$router->get('/estudios/{idPersona}', 'EstudiosPersonaController@indexOtroEstudioPorPersona');
 $router->post('/estudio', 'EstudiosPersonaController@store');
 $router->post('/estudiosBasicos', 'EstudiosPersonaController@storeEstudiosBasicos');
 $router->get('/estudio/{estudio}', 'EstudiosPersonaController@show');
@@ -156,3 +159,8 @@ $router->put('/persona/{persona}', 'PersonaController@update');
 $router->patch('/persona/{persona}', 'PersonaController@update');
 $router->delete('/persona/{persona}', 'PersonaController@destroy');
 //});
+
+/**
+ * Rutas de Parentesco
+ */
+$router->post('/parentesco', 'ParentescoController@store');

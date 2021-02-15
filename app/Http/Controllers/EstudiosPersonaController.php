@@ -32,6 +32,12 @@ class EstudiosPersonaController extends Controller
         return $this->successResponse($estudios);
     }
 
+    public function indexOtroEstudioPorPersona($idPersona)
+    {
+        $estudios = EstudioPersona::where('persona_id', $idPersona)->where('tipo_estudio_id', 4)->get();
+
+        return $this->successResponse($estudios);
+    }
 
 
     /**
@@ -43,7 +49,7 @@ class EstudiosPersonaController extends Controller
             'anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,ñ@\.\(\)]+$/',
             'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'tipo_estudio_id' => 'required|exists:tipoEstudio,id',
-            'persona_id' => 'required|exists:persona,id',
+
         ];
 
         $this->validate($request, $rules);
@@ -176,13 +182,15 @@ class EstudiosPersonaController extends Controller
     /**
      * mostrar info de un estudios en particular
      */
-    public function show($estudios)
+    public function show($estudios) //tengo que hacer un show segun un id de persona
     {
 
         $estudios = EstudioPersona::findOrFail($estudios);
 
         return $this->successResponse($estudios);
     }
+
+
 
     /**
      * actualiza informacion de un estudios
