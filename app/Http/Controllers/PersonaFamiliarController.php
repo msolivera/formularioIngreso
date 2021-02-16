@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use Illuminate\Http\Response;
 
-class PersonaController extends Controller
+class PersonaFamiliarController extends Controller
 {
     use ApiResponses;
     /**
@@ -43,35 +43,22 @@ class PersonaController extends Controller
 
 
         $rules = [
-            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'segundoNombre' => 'regex:/^[a-zA-Z]+$/|min:4',
-            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'segundoApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
-            'fechaNacimiento' => 'required',
-            'cedula' => [
-                'integer',
-                'required',
-                '',
-                new ValidCI,
-            ],
-            'credencialSerie' => 'required|regex:/^[a-zA-Z]+$/|min:3',
-            'credencialNumero' => 'required|integer|min:0|max:1000000',
-            'sexo' => 'required|in:Femenino,Masculino',
-            'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'telefono_celular' => 'required|numeric',
+            'primerNombre' => 'regex:/^[a-zA-Z]+$/',
+            'segundoNombre' => 'regex:/^[a-zA-Z]+$/',
+            'primerApellido' => 'regex:/^[a-zA-Z]+$/',
+            'segundoApellido' => 'regex:/^[a-zA-Z]+$/',
+            'apodo' => 'regex:/^[a-zA-Z]+$/',
+            'cedula' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'credencialSerie' => 'regex:/^[a-zA-Z]+$/',
+            'credencialNumero' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'domicilioActual' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'telefono_celular' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'correoElectronico' => 'email',
-            'seccionalPolicial' => 'integer',
-            'estadocivil_id' => 'required|exists:estadocivil,id', //me fijo que el dato exista en la otra tabla de la base
-            'pais_id' => 'required|exists:pais,id',
-            'tipo_persona_id' => 'required|exists:tipopersona,id',
-            'inscripcion_id' => 'exists:inscripcion,id',
-            'departamento_id' => 'exists:departamento,id',
-            'ciudadBarrio_id' => 'exists:ciudad_barrio,id',
+            'seccionalPolicial' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             //Esto es para hacer el insert en la talba de direccion si es extranjero
-            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
 
         ];
 
@@ -118,6 +105,27 @@ class PersonaController extends Controller
         return $this->successResponse($persona->id, Response::HTTP_CREATED);
     }
 
+
+    public function storeOtrosFliares(Request $request)
+    {
+
+        $rules = [
+            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'tipo_persona_id' => 'required|exists:tipopersona,id'
+        ];
+        $this->validate($request, $rules);
+
+        $familiar = new Persona();
+
+        $familiar->primerNombre = $request->primerNombre;
+        $familiar->primerApellido = $request->primerApellido;
+        $familiar->fechaNacimiento = $request->fechaNacimiento;
+        $familiar->tipo_persona_id = $request->tipo_persona_id;
+        $familiar->save();
+
+        return $this->successResponse($familiar->id, Response::HTTP_CREATED);
+    }
 
 
     /**

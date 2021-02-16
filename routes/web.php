@@ -153,7 +153,8 @@ $router->delete('/respuesta/{respuesta}', 'RespuestaController@destroy');
  */
 $router->get('/personas', 'PersonaController@index');
 $router->post('/persona', 'PersonaController@store');
-$router->post('/familiar', 'PersonaController@storeOtrosFliares');
+$router->post('/personaFamiliar', 'PersonaFamiliarController@store');
+$router->post('/familiar', 'PersonaFamiliarController@storeOtrosFliares');
 $router->get('/persona/{persona}', 'PersonaController@show');
 $router->put('/persona/{persona}', 'PersonaController@update');
 $router->patch('/persona/{persona}', 'PersonaController@update');

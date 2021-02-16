@@ -40,6 +40,8 @@ class RespuestaController extends Controller
     {
         $rules = [
             'respuesta' => 'required',
+            'persona_id' => 'exists:persona,id',
+            'pregunta_id' => 'exists:pregunta,id',
         ];
 
         $this->validate($request, $rules);

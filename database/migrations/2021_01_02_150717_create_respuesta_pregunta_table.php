@@ -16,9 +16,9 @@ class CreateRespuestaPreguntaTable extends Migration
         Schema::create('RespuestaPregunta', function (Blueprint $table) {
             $table->id();
             $table->string('respuesta');
-            $table->string('observaciones');
-            $table->unsignedInteger('persona_id')->nullable();
-            $table->unsignedInteger('pregunta_id')->nullable();
+            $table->string('observaciones')->nullable();
+            $table->unsignedInteger('persona_id');
+            $table->unsignedInteger('pregunta_id');
             $table->timestamps();
         });
     }
