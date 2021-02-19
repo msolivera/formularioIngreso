@@ -139,6 +139,7 @@ class PersonaFamiliarController extends Controller
         return $this->successResponse($persona);
     }
 
+
     /**
      * actualiza informacion de un persona
      */

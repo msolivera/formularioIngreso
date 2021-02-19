@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Parentesco;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use Illuminate\Http\Response;
@@ -59,6 +60,31 @@ class ParentescoController extends Controller
         $parentesco = Parentesco::findOrFail($parentesco);
 
         return $this->successResponse($parentesco);
+    }
+
+    public function showPariente($persona)
+    {
+        $persona = Parentesco::join('persona', 'familiar_id', '=', 'persona.id')
+            ->join('tipopersona', 'tipo_persona_id', '=', 'tipopersona.id')
+            ->select(
+                'familiar_id',
+                'persona.primerNombre',
+                'persona.primerApellido',
+                'persona.fechaNacimiento',
+                'tipo_persona_id',
+                'tipopersona.nombre'
+            )->where('postulante_id', $persona)
+            ->where('tipo_persona_id', '<>', 2)
+            ->where('tipo_persona_id', '<>', 3)
+            ->where('tipo_persona_id', '<>', 10)->get();
+        return $this->successResponse($persona);
+
+
+        /**SELECT `familiar_id`,`persona`.`primerNombre`, `persona`.`primerApellido`,`persona`.`fechaNacimiento` ,`tipo_persona_id`,`tipopersona`.`nombre`
+FROM parentesco 
+INNER JOIN `persona` ON `familiar_id` = `persona`.`id`
+INNER JOIN `tipopersona` on `tipo_persona_id` = `tipopersona`.`id`
+where `postulante_id`= 26 AND `tipo_persona_id` <> 2 and `tipo_persona_id` <> 3  and `tipo_persona_id` <> 10 */
     }
 
     /**

@@ -159,9 +159,11 @@ $router->get('/persona/{persona}', 'PersonaController@show');
 $router->put('/persona/{persona}', 'PersonaController@update');
 $router->patch('/persona/{persona}', 'PersonaController@update');
 $router->delete('/persona/{persona}', 'PersonaController@destroy');
+
 //});
 
 /**
  * Rutas de Parentesco
  */
 $router->post('/parentesco', 'ParentescoController@store');
+$router->get('/pariente/{persona}', 'ParentescoController@showPariente');
