@@ -144,6 +144,7 @@ $router->delete('/pregunta/{pregunta}', 'PreguntaController@destroy');
 $router->get('/respuestas', 'RespuestaController@index');
 $router->post('/respuesta', 'RespuestaController@store');
 $router->get('/respuesta/{respuesta}', 'RespuestaController@show');
+$router->get('/respuestaPersona/{persona}', 'RespuestaController@showRespuestas');
 $router->put('/respuesta/{respuesta}', 'RespuestaController@update');
 $router->patch('/respuesta/{respuesta}', 'RespuestaController@update');
 $router->delete('/respuesta/{respuesta}', 'RespuestaController@destroy');

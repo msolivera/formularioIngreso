@@ -98,4 +98,19 @@ class RespuestaController extends Controller
 
         return $this->successResponse($respuesta);
     }
+
+
+    public function showRespuestas($persona)
+    {
+        $persona = RespuestaPregunta::join('pregunta', 'pregunta_id', '=', 'pregunta.id')
+
+            ->select(
+                'pregunta.textoPregunta',
+                'respuesta',
+            )->where('persona_id', $persona)->get();
+        return $this->successResponse($persona);
+        /*SELECT `pregunta`.`textoPregunta`, `respuestapregunta`.`respuesta`  FROM respuestapregunta INNER JOIN `pregunta` 
+        ON `pregunta_id` = `pregunta`.`id`
+WHERE `persona_id`=37*/
+    }
 }
