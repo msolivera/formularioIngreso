@@ -43,10 +43,10 @@ class PersonaController extends Controller
 
 
         $rules = [
-            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'segundoNombre' => 'regex:/^[a-zA-Z]+$/|min:4',
-            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'segundoApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'primerNombre' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'segundoNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'segundoApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
             'fechaNacimiento' => 'required',
             'cedula' => [
@@ -138,17 +138,38 @@ class PersonaController extends Controller
     {
 
         $rules = [
-            'primerNombre' => 'required',
-            'primerApellido' => 'required',
-            'segundoApellido' => 'required',
+            'primerNombre' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'segundoNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'segundoApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
             'fechaNacimiento' => 'required',
-            'cedula' => 'required',
-            'sexo' => 'required',
-            'domicilioActual' => 'required',
-            'telefono_celular' => 'required',
-            'estadoCivil_id' => 'required',
-            'pais_id' => 'required',
+            'cedula' => [
+                'integer',
+                'required',
+                '',
+                new ValidCI,
+            ],
+            'credencialSerie' => 'required|regex:/^[a-zA-Z]+$/|min:3',
+            'credencialNumero' => 'required|integer|min:0|max:1000000',
+            'sexo' => 'required|in:Femenino,Masculino',
+            'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'telefono_celular' => 'required|numeric',
+            'correoElectronico' => 'email',
+            'seccionalPolicial' => 'integer',
+            'estadocivil_id' => 'required|exists:estadocivil,id', //me fijo que el dato exista en la otra tabla de la base
+            'pais_id' => 'required|exists:pais,id',
+            'tipo_persona_id' => 'required|exists:tipopersona,id',
+            'inscripcion_id' => 'exists:inscripcion,id',
+            'departamento_id' => 'exists:departamento,id',
+            'ciudadBarrio_id' => 'exists:ciudad_barrio,id',
+            //Esto es para hacer el insert en la talba de direccion si es extranjero
+            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+
         ];
+
         $this->validate($request, $rules);
         $persona  = Persona::findOrFail($persona);
 
@@ -157,8 +178,9 @@ class PersonaController extends Controller
 
             return $this->errorResponse('Al menos debe cambiar un valor', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
         $persona->save();
-        return $this->successResponse($persona);
+        return $this->successResponse($persona->id);
     }
 
 

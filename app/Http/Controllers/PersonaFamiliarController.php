@@ -43,11 +43,11 @@ class PersonaFamiliarController extends Controller
 
 
         $rules = [
-            'primerNombre' => 'regex:/^[a-zA-Z]+$/',
-            'segundoNombre' => 'regex:/^[a-zA-Z]+$/',
-            'primerApellido' => 'regex:/^[a-zA-Z]+$/',
-            'segundoApellido' => 'regex:/^[a-zA-Z]+$/',
-            'apodo' => 'regex:/^[a-zA-Z]+$/',
+            'primerNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'segundoNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'primerApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'segundoApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'apodo' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'cedula' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'credencialSerie' => 'regex:/^[a-zA-Z]+$/',
             'credencialNumero' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
@@ -147,19 +147,27 @@ class PersonaFamiliarController extends Controller
     {
 
         $rules = [
-            'primerNombre' => 'required',
-            'primerApellido' => 'required',
-            'segundoApellido' => 'required',
-            'fechaNacimiento' => 'required',
-            'cedula' => 'required',
-            'sexo' => 'required',
-            'domicilioActual' => 'required',
-            'telefono_celular' => 'required',
-            'estadoCivil_id' => 'required',
-            'pais_id' => 'required',
+            'primerNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'segundoNombre' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'primerApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'segundoApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'apodo' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'cedula' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'credencialSerie' => 'regex:/^[a-zA-Z]+$/',
+            'credencialNumero' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'domicilioActual' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'telefono_celular' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'correoElectronico' => 'email',
+            'seccionalPolicial' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            //Esto es para hacer el insert en la talba de direccion si es extranjero
+            'nombre_ciudad' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'nombre_departamento_estado' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+
         ];
         $this->validate($request, $rules);
         $persona  = Persona::findOrFail($persona);
+
 
         $persona->fill($request->all());
         if ($persona->isClean()) {
@@ -167,7 +175,7 @@ class PersonaFamiliarController extends Controller
             return $this->errorResponse('Al menos debe cambiar un valor', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $persona->save();
-        return $this->successResponse($persona);
+        return $this->successResponse($persona->id);
     }
 
 

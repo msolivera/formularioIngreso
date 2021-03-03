@@ -40,7 +40,7 @@ class OcupacionController extends Controller
     {
         $rules = [
             'cargo_funcion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'ente' => 'in:Publico,Privado',
+            'ente' => 'in:Publico,Privado,No trabaja',
             'nombreEmpresa'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'direccion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'persona_id' => 'required|exists:persona,id',
@@ -50,7 +50,7 @@ class OcupacionController extends Controller
 
         $ocupacion = Ocupacion::create($request->all());
 
-        return $this->successResponse($ocupacion, Response::HTTP_CREATED);
+        return $this->successResponse($ocupacion->id, Response::HTTP_CREATED);
     }
 
     /**
@@ -69,20 +69,23 @@ class OcupacionController extends Controller
      */
     public function update(Request $request, $ocupacion)
     {
-
         $rules = [
-            'nombre' => 'required|unique:ocupacion|min:5',
+            'cargo_funcion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'ente' => 'in:Publico,Privado,No trabaja',
+            'nombreEmpresa'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'direccion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
+            'persona_id' => 'required|exists:persona,id',
         ];
         $this->validate($request, $rules);
         $ocupacion  = Ocupacion::findOrFail($ocupacion);
 
         $ocupacion->fill($request->all());
-        if ($ocupacion->isClean()) {
+        /* if ($ocupacion->isClean()) {
 
             return $this->errorResponse('Al menos debe cambiar un valor', Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        }*/
         $ocupacion->save();
-        return $this->successResponse($ocupacion);
+        return $this->successResponse($ocupacion->id);
     }
 
 

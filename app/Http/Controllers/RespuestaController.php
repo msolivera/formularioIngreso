@@ -105,6 +105,8 @@ class RespuestaController extends Controller
         $persona = RespuestaPregunta::join('pregunta', 'pregunta_id', '=', 'pregunta.id')
 
             ->select(
+                'pregunta_id',
+                'respuestapregunta.id',
                 'pregunta.textoPregunta',
                 'respuesta',
             )->where('persona_id', $persona)->get();
