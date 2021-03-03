@@ -69,21 +69,21 @@ class RespuestaController extends Controller
     {
 
         $rules = [
-            'respuesta' => 'required|in:SI,NO',
-            'observaciones' => 'regex:/^[A-Za-z0-9\-! ,/@\.\(\)]+$/|min:4',
-            'persona_id' => 'required|exists:persona,id',
-            'pregunta_id' => 'required|exists:pregunta,id',
+            'respuesta' => 'required',
+            'persona_id' => 'exists:persona,id',
+            'pregunta_id' => 'exists:pregunta,id',
         ];
+
         $this->validate($request, $rules);
         $respuesta  = RespuestaPregunta::findOrFail($respuesta);
 
         $respuesta->fill($request->all());
-        if ($respuesta->isClean()) {
+        /* if ($respuesta->isClean()) {
 
             return $this->errorResponse('Al menos debe cambiar un valor', Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        }*/
         $respuesta->save();
-        return $this->successResponse($respuesta);
+        return $this->successResponse($respuesta->id);
     }
 
 
