@@ -39,7 +39,7 @@ class RespuestaController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'respuesta' => 'required',
+            'respuesta' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'persona_id' => 'exists:persona,id',
             'pregunta_id' => 'exists:pregunta,id',
         ];
@@ -69,7 +69,7 @@ class RespuestaController extends Controller
     {
 
         $rules = [
-            'respuesta' => 'required',
+            'respuesta' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'persona_id' => 'exists:persona,id',
             'pregunta_id' => 'exists:pregunta,id',
         ];
