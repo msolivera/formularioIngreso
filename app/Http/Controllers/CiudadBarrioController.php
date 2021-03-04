@@ -57,9 +57,12 @@ class CiudadBarrioController extends Controller
     {
 
         $ciudad_barrio = CiudadBarrio::findOrFail($ciudad_barrio);
+        //$ciudad_barrio = CiudadBarrio::where('id', $ciudad_barrio)->get();
 
-        return $this->successResponse($ciudad_barrio);
+
+        return $this->successResponse($ciudad_barrio->nombre);
     }
+
 
     /**
      * Funcion que trae las Ciudades segun un id de departamento dado

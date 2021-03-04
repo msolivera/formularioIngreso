@@ -57,7 +57,7 @@ class PaisController extends Controller
 
         $pais = Pais::findOrFail($pais);
 
-        return $this->successResponse($pais);
+        return $this->successResponse($pais->nombre);
     }
 
     /**

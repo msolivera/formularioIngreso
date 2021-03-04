@@ -67,31 +67,42 @@ class EstudiosPersonaController extends Controller
 
     public function storeEstudiosBasicos(Request $request)
     {
-        /*$rules = [
+        //aca habria que controlar unique idPersona con tipoEstudio y nombreEstudio
 
-            'anioEstudio'  => 'regex:/^[A-Za-z0-9\-! ,ñ@\.\(\)]+$/|min:4',
-            'nombreInstituto'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'tipo_estudio_id' => 'required|exists:tipoEstudio,id',
-            'persona_id' => 'required|exists:persona,id',
-        ];
+        $estudios = EstudioPersona::where('persona_id', '=', $request->primeroPrimaria_persona_id)
+            ->where('anioEstudio', '=', 'Primer año')
+            ->where('tipo_estudio_id', '=', '1')->first();
 
-        $this->validate($request, $rules);*/
+        if ($estudios) {
+            $estudios->nombreInstituto = $request->primeroPrimaria_nombreInstituto;
+            $estudios->update();
+        } else {
+            $primeroPrimaria = new EstudioPersona();
+            $primeroPrimaria->anioEstudio = $request->primeroPrimaria_anioEstudio;
+            $primeroPrimaria->nombreInstituto = $request->primeroPrimaria_nombreInstituto;
+            $primeroPrimaria->tipo_estudio_id = $request->primeroPrimaria_tipo_estudio_id;
+            $primeroPrimaria->persona_id = $request->primeroPrimaria_persona_id;
+            $primeroPrimaria->save();
+        }
 
-        $primeroPrimaria = new EstudioPersona();
 
-        $primeroPrimaria->anioEstudio = $request->primeroPrimaria_anioEstudio;
-        $primeroPrimaria->nombreInstituto = $request->primeroPrimaria_nombreInstituto;
-        $primeroPrimaria->tipo_estudio_id = $request->primeroPrimaria_tipo_estudio_id;
-        $primeroPrimaria->persona_id = $request->primeroPrimaria_persona_id;
-        $primeroPrimaria->save();
+        $estudiossegundoPrimaria = EstudioPersona::where('persona_id', '=', $request->primeroPrimaria_persona_id)
+            ->where('anioEstudio', '=', 'Segundo año')
+            ->where('tipo_estudio_id', '=', '1')->first();
 
-        $segundoPrimaria = new EstudioPersona();
+        if ($estudiossegundoPrimaria) {
+            $estudiossegundoPrimaria->nombreInstituto = $request->segundoPrimaria_nombreInstituto;
+            $estudiossegundoPrimaria->update();
+        } else {
+            $segundoPrimaria = new EstudioPersona();
 
-        $segundoPrimaria->anioEstudio = $request->segundoPrimaria_anioEstudio;
-        $segundoPrimaria->nombreInstituto = $request->segundoPrimaria_nombreInstituto;
-        $segundoPrimaria->tipo_estudio_id = $request->segundoPrimaria_tipo_estudio_id;
-        $segundoPrimaria->persona_id = $request->segundoPrimaria_persona_id;
-        $segundoPrimaria->save();
+            $segundoPrimaria->anioEstudio = $request->segundoPrimaria_anioEstudio;
+            $segundoPrimaria->nombreInstituto = $request->segundoPrimaria_nombreInstituto;
+            $segundoPrimaria->tipo_estudio_id = $request->segundoPrimaria_tipo_estudio_id;
+            $segundoPrimaria->persona_id = $request->segundoPrimaria_persona_id;
+            $segundoPrimaria->save();
+        }
+
 
         $terceroPrimaria = new EstudioPersona();
 
@@ -176,7 +187,8 @@ class EstudiosPersonaController extends Controller
         $sextoBach->save();
 
 
-        return $this->successResponse($sextoBach, Response::HTTP_CREATED);
+
+        return $this->successResponse('ok polilla', Response::HTTP_CREATED);
     }
 
     /**
@@ -197,7 +209,7 @@ class EstudiosPersonaController extends Controller
      */
     public function update(Request $request, $estudios)
     {
-
+        //tenemos id persona | tipo estudio | nombre
         $rules = [
             'nombre' => 'required',
         ];
@@ -217,12 +229,13 @@ class EstudiosPersonaController extends Controller
     /**
      * remueve un estudios
      */
-    public function destroy($estudios)
+    public function eliminar($nombre, $persona)
     {
-
-        $estudios = EstudioPersona::findOrFail($estudios);
+        dd($persona);
+        $estudios = EstudioPersona::where('persona_id' == $persona)
+            ->where('anioEstudio' == $nombre)->first();
         $estudios->delete();
 
-        return $this->successResponse($estudios);
+        return true;
     }
 }

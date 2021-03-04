@@ -57,7 +57,7 @@ class DepartamentoController extends Controller
 
         $departamento = Departamento::findOrFail($departamento);
 
-        return $this->successResponse($departamento);
+        return $this->successResponse($departamento->nombre);
     }
 
     /**

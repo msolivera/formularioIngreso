@@ -111,10 +111,10 @@ $router->delete('/direccion/{direccion}', 'DireccionExtranjeroController@destroy
 $router->get('/ciudades', 'CiudadBarrioController@index');
 $router->get('/cuidadPorDepa/{idDepa}', 'CiudadBarrioController@indexPorDepartamento');
 $router->post('/ciudad', 'CiudadBarrioController@store');
-$router->get('/ciudad/{ciudad}', 'CiudadBarrioController@show');
-$router->put('/ciudad/{ciudad}', 'CiudadBarrioController@update');
-$router->patch('/ciudad/{ciudad}', 'CiudadBarrioController@update');
-$router->delete('/ciudad/{ciudad}', 'CiudadBarrioController@destroy');
+$router->get('/ciudad/{ciudad_barrio}', 'CiudadBarrioController@show');
+$router->put('/ciudad/{ciudad_barrio}', 'CiudadBarrioController@update');
+$router->patch('/ciudad/{ciudad_barrio}', 'CiudadBarrioController@update');
+$router->delete('/ciudad/{ciudad_barrio}', 'CiudadBarrioController@destroy');
 
 /**
  * Rutas de  Estudios Persona
@@ -126,7 +126,7 @@ $router->post('/estudiosBasicos', 'EstudiosPersonaController@storeEstudiosBasico
 $router->get('/estudio/{estudio}', 'EstudiosPersonaController@show');
 $router->put('/estudio/{estudio}', 'EstudiosPersonaController@update');
 $router->patch('/estudio/{estudio}', 'EstudiosPersonaController@update');
-$router->delete('/estudio/{estudio}', 'EstudiosPersonaController@destroy');
+//$router->delete('/estudio/{estudio}', 'EstudiosPersonaController@destroy');
 
 /**
  * Rutas de  Preguntas
