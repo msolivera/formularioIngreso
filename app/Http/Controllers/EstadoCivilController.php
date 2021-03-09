@@ -57,7 +57,7 @@ class EstadoCivilController extends Controller
 
         $estadoCivil = EstadoCivil::findOrFail($estadoCivil);
 
-        return $this->successResponse($estadoCivil);
+        return $this->successResponse($estadoCivil->nombre);
     }
 
     /**
