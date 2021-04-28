@@ -13,7 +13,7 @@ class CreateParenteScoTable extends Migration
      */
     public function up()
     {
-        Schema::create('Parentesco', function (Blueprint $table) {
+        Schema::create('parentesco', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('postulante_id');
             $table->unsignedInteger('familiar_id');

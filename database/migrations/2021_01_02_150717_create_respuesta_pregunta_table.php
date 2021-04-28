@@ -13,7 +13,7 @@ class CreateRespuestaPreguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('RespuestaPregunta', function (Blueprint $table) {
+        Schema::create('respuestaPregunta', function (Blueprint $table) {
             $table->id();
             $table->string('respuesta');
             $table->string('observaciones')->nullable();

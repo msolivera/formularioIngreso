@@ -48,6 +48,7 @@ class PersonaController extends Controller
             'primerApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'segundoApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
+            'fallecido' => 'regex:/^[a-zA-Z]+$/|in:SI,NO',
             'fechaNacimiento' => 'required',
             'cedula' => [
                 'integer',
@@ -58,6 +59,8 @@ class PersonaController extends Controller
             'credencialSerie' => 'required|regex:/^[a-zA-Z]+$/|min:3',
             'credencialNumero' => 'required|integer|min:0|max:1000000',
             'sexo' => 'required|in:Femenino,Masculino',
+            'identidadGenero' => 'required|in:Mujer,Hombre,Trans',
+            'raza' => 'required|in:Afrodescendiente,No afrodescendiente',
             'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'telefono_celular' => 'required|numeric',
@@ -83,11 +86,15 @@ class PersonaController extends Controller
         $persona->primerApellido = $request->primerApellido;
         $persona->segundoApellido = $request->segundoApellido;
         $persona->apodo = $request->apodo;
+        $persona->fallecido = $request->fallecido;
         $persona->fechaNacimiento = $request->fechaNacimiento;
+        $persona->fechaDefuncion = $request->fechaDefuncion;
         $persona->cedula = $request->cedula;
         $persona->credencialSerie = $request->credencialSerie;
         $persona->credencialNumero = $request->credencialNumero;
         $persona->sexo = $request->sexo;
+        $persona->identidadGenero = $request->identidadGenero;
+        $persona->raza = $request->raza;
         $persona->domicilioActual = $request->domicilioActual;
         $persona->domicilioAnterior = $request->domicilioAnterior;
         $persona->telefono_celular = $request->telefono_celular;
@@ -143,6 +150,7 @@ class PersonaController extends Controller
             'primerApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'segundoApellido' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'apodo' => 'regex:/^[a-zA-Z]+$/|min:4',
+            'fallecido' => 'regex:/^[a-zA-Z]+$/|in:SI,NO,DESCONOCIDO',
             'fechaNacimiento' => 'required',
             'cedula' => [
                 'integer',
@@ -153,6 +161,8 @@ class PersonaController extends Controller
             'credencialSerie' => 'required|regex:/^[a-zA-Z]+$/|min:3',
             'credencialNumero' => 'required|integer|min:0|max:1000000',
             'sexo' => 'required|in:Femenino,Masculino',
+            'identidadGenero' => 'required|in:Mujer,Hombre, Trans',
+            'raza' => 'required|in:Afrodescendiente,No afrodescendiente',
             'domicilioActual' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'domicilioAnterior' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'telefono_celular' => 'required|numeric',

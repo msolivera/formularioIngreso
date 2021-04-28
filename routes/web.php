@@ -171,3 +171,9 @@ $router->post('/familiar', 'PersonaFamiliarController@storeOtrosFliares');
  */
 $router->post('/parentesco', 'ParentescoController@store');
 $router->get('/pariente/{persona}', 'ParentescoController@showPariente');
+
+/**
+ * Para traer el id de respuesta para despues poder hacer el update
+ */
+
+$router->get('/getIdResouesta/{idPersona}/{idPregunta}', 'OcupacionController@getIdRespuestaPregunta');

@@ -71,6 +71,7 @@ class ParentescoController extends Controller
                 'persona.primerNombre',
                 'persona.primerApellido',
                 'persona.fechaNacimiento',
+                'persona.cedula',
                 'tipo_persona_id',
                 'tipopersona.nombre'
             )->where('postulante_id', $persona)

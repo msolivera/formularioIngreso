@@ -13,7 +13,7 @@ class CreateOcupacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('Ocupacion', function (Blueprint $table) {
+        Schema::create('ocupacion', function (Blueprint $table) {
             $table->id();
             $table->string('cargo_funcion');
             $table->string('ente');

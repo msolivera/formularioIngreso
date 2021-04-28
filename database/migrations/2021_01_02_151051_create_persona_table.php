@@ -13,18 +13,22 @@ class CreatePersonaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Persona', function (Blueprint $table) {
+        Schema::create('persona', function (Blueprint $table) {
             $table->id();
             $table->string('primerNombre');
             $table->string('segundoNombre')->nullable();
             $table->string('primerApellido');
             $table->string('segundoApellido')->nullable();
             $table->string('apodo')->nullable();
+            $table->string('fallecido')->nullable();
             $table->string('fechaNacimiento');
+            $table->string('fechaDefuncion')->nullable();
             $table->integer('cedula')->nullable();
             $table->string('credencialSerie')->nullable();
             $table->integer('credencialNumero')->nullable();
             $table->string('sexo')->nullable();
+            $table->string('identidadGenero')->nullable();
+            $table->string('raza')->nullable();
             $table->string('domicilioActual')->nullable();
             $table->integer('telefono_celular')->nullable();
             $table->string('domicilioAnterior')->nullable();

@@ -13,7 +13,7 @@ class CreatePreguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Pregunta', function (Blueprint $table) {
+        Schema::create('pregunta', function (Blueprint $table) {
             $table->id();
             $table->string('textoPregunta')->unique();
             $table->unsignedInteger('tipo_persona_id')->nullable();

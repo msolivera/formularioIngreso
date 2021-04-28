@@ -13,7 +13,7 @@ class CreateCuidadBarrioTable extends Migration
      */
     public function up()
     {
-        Schema::create('Ciudad_Barrio', function (Blueprint $table) {
+        Schema::create('ciudad_Barrio', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->unsignedBigInteger('departamento_id')->nullable()->default(0);

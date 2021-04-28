@@ -51,6 +51,59 @@ class TipoPersonaSeeder extends Seeder
         $hija->nombre = 'Hija';
         $hija->save();
 
+        $suegro = new TipoPersona;
+        $suegro->nombre = 'Suegro';
+        $suegro->save();
+
+        $suegra = new TipoPersona;
+        $suegra->nombre = 'Suegra';
+        $suegra->save();
+
+        $yerno = new TipoPersona;
+        $yerno->nombre = 'Yerno';
+        $yerno->save();
+
+        $nuera = new TipoPersona;
+        $nuera->nombre = 'Nuera';
+        $nuera->save();
+
+        $cunado = new TipoPersona;
+        $cunado->nombre = 'Cuñado';
+        $cunado->save();
+
+        $cunada = new TipoPersona;
+        $cunada->nombre = 'Cuñada';
+        $cunada->save();
+
+        $tio = new TipoPersona;
+        $tio->nombre = 'Tio';
+        $tio->save();
+
+        $tia = new TipoPersona;
+        $tia->nombre = 'Tia';
+        $tia->save();
+
+        $sobrino = new TipoPersona;
+        $sobrino->nombre = 'Sobrino';
+        $sobrino->save();
+
+        $sobrina = new TipoPersona;
+        $sobrina->nombre = 'Sobrina';
+        $sobrina->save();
+
+        $bisabuelo = new TipoPersona;
+        $bisabuelo->nombre = 'Bisabuelo';
+        $bisabuelo->save();
+
+        $bisabuela = new TipoPersona;
+        $bisabuela->nombre = 'Bisabuela';
+        $bisabuela->save();
+
+        $otro = new TipoPersona;
+        $otro->nombre = 'Otro';
+        $otro->save();
+
+
         $conyuge_concubino_novio = new TipoPersona;
         $conyuge_concubino_novio->nombre = 'Conyuge, Concubino/a, Novio/a';
         $conyuge_concubino_novio->save();

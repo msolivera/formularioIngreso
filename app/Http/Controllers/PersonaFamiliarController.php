@@ -48,6 +48,7 @@ class PersonaFamiliarController extends Controller
             'primerApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'segundoApellido' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'apodo' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+            'fallecido' => 'regex:/^[a-zA-Z]+$/|in:SI,NO',
             'cedula' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
             'credencialSerie' => 'regex:/^[a-zA-Z]+$/',
             'credencialNumero' => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
@@ -70,11 +71,15 @@ class PersonaFamiliarController extends Controller
         $persona->primerApellido = $request->primerApellido;
         $persona->segundoApellido = $request->segundoApellido;
         $persona->apodo = $request->apodo;
+        $persona->fallecido = $request->fallecido;
         $persona->fechaNacimiento = $request->fechaNacimiento;
+        $persona->fechaDefuncion = $request->fechaDefuncion;
         $persona->cedula = $request->cedula;
         $persona->credencialSerie = $request->credencialSerie;
         $persona->credencialNumero = $request->credencialNumero;
         $persona->sexo = $request->sexo;
+        $persona->identidadGenero = $request->identidadGenero;
+        $persona->raza = $request->raza;
         $persona->domicilioActual = $request->domicilioActual;
         $persona->domicilioAnterior = $request->domicilioAnterior;
         $persona->telefono_celular = $request->telefono_celular;
@@ -112,7 +117,8 @@ class PersonaFamiliarController extends Controller
         $rules = [
             'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
             'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
-            'tipo_persona_id' => 'required|exists:tipopersona,id'
+            'tipo_persona_id' => 'required|exists:tipopersona,id',
+            'cedula' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
         ];
         $this->validate($request, $rules);
 
@@ -121,10 +127,34 @@ class PersonaFamiliarController extends Controller
         $familiar->primerNombre = $request->primerNombre;
         $familiar->primerApellido = $request->primerApellido;
         $familiar->fechaNacimiento = $request->fechaNacimiento;
+        $familiar->cedula = $request->cedula;
         $familiar->tipo_persona_id = $request->tipo_persona_id;
         $familiar->save();
 
         return $this->successResponse($familiar->id, Response::HTTP_CREATED);
+    }
+
+    public function updateOtroFliar(Request $request, $persona)
+    {
+
+        $rules = [
+            'primerNombre' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/|min:4',
+            'tipo_persona_id' => 'required|exists:tipopersona,id',
+            'cedula' => 'required|regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/',
+        ];
+
+        $this->validate($request, $rules);
+        $persona  = Persona::findOrFail($persona);
+
+
+        $persona->fill($request->all());
+        if ($persona->isClean()) {
+
+            return $this->errorResponse('Al menos debe cambiar un valor', Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $persona->save();
+        return $this->successResponse($persona->id);
     }
 
 

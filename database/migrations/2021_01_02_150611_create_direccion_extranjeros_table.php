@@ -13,7 +13,7 @@ class CreateDireccionExtranjerosTable extends Migration
      */
     public function up()
     {
-        Schema::create('DireccionExtranjeros', function (Blueprint $table) {
+        Schema::create('direccionExtranjeros', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_departamento_estado');
             $table->string('nombre_ciudad');

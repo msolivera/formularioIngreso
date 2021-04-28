@@ -13,7 +13,7 @@ class CreateEstudioPersonaTable extends Migration
      */
     public function up()
     {
-        Schema::create('EstudioPersona', function (Blueprint $table) {
+        Schema::create('estudioPersona', function (Blueprint $table) {
             $table->id();
             $table->string('anioEstudio');
             $table->string('nombreInstituto');

@@ -13,7 +13,7 @@ class CreatePaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('Pais', function (Blueprint $table) {
+        Schema::create('pais', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
             $table->timestamps();
