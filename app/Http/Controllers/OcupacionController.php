@@ -104,7 +104,7 @@ class OcupacionController extends Controller
     {
         $rules = [
             'cargo_funcion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
-            'ente' => 'in:Publico,Privado,No trabaja',
+            'ente' => 'in:Publico,Privado,No trabaja,Independiente',
             'nombreEmpresa'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'direccion'  => 'regex:/^[A-Za-z0-9\-! ,@\.\(\)]+$/|min:4',
             'persona_id' => 'required|exists:persona,id',

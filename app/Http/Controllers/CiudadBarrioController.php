@@ -26,7 +26,7 @@ class CiudadBarrioController extends Controller
     public function index()
     {
 
-        $ciudad_barrio = CiudadBarrio::all();
+        $ciudad_barrio = CiudadBarrio::orderBy('nombre', 'ASC')->get();;
 
         return $this->successResponse($ciudad_barrio);
     }
@@ -56,11 +56,11 @@ class CiudadBarrioController extends Controller
     public function show($ciudad_barrio)
     {
 
-        $ciudad_barrio = CiudadBarrio::findOrFail($ciudad_barrio);
-        //$ciudad_barrio = CiudadBarrio::where('id', $ciudad_barrio)->get();
+        // $ciudad_barrio = CiudadBarrio::orderBy('nombre', 'ASC')->get();
+        $ciudad_barrio = CiudadBarrio::findOrFail($ciudad_barrio)->where('id', $ciudad_barrio)->get();
 
 
-        return $this->successResponse($ciudad_barrio->nombre);
+        return $this->successResponse($ciudad_barrio);
     }
 
 
@@ -70,7 +70,7 @@ class CiudadBarrioController extends Controller
 
     public function indexPorDepartamento($idDepa)
     {
-        $ciudad_barrio = CiudadBarrio::where('departamento_id', $idDepa)->get();
+        $ciudad_barrio = CiudadBarrio::where('departamento_id', $idDepa)->orderBy('nombre', 'ASC')->get();
 
         return $this->successResponse($ciudad_barrio);
     }
