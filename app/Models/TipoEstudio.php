@@ -20,12 +20,11 @@ class TipoEstudio extends Model implements AuthenticatableContract, Authorizable
      * @var array
      */
     protected $fillable = [
-        'nombre', 
+        'nombre',
     ];
 
     public function estudio_persona()
     {
         return $this->belongsTo(EstudioPersona::class);
-    }  
-
+    }
 }

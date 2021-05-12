@@ -13,7 +13,7 @@ class CreateRespuestaPreguntaTable extends Migration
      */
     public function up()
     {
-        Schema::create('respuestaPregunta', function (Blueprint $table) {
+        Schema::create('respuesta_pregunta', function (Blueprint $table) {
             $table->id();
             $table->string('respuesta');
             $table->string('observaciones')->nullable();
@@ -30,6 +30,6 @@ class CreateRespuestaPreguntaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('RespuestaPregunta');
+        Schema::dropIfExists('respuesta_pregunta');
     }
 }

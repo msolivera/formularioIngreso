@@ -12,7 +12,7 @@ use Laravel\Lumen\Auth\Authorizable;
 class DireccionExtranjero extends Model implements AuthenticatableContract, AuthorizableContract
 {
 
-    protected $table = 'direccionextranjeros';
+    protected $table = 'direccion_extranjeros';
     use Authenticatable, Authorizable, HasFactory;
 
     /**

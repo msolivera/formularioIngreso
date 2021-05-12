@@ -22,6 +22,4 @@ class TipoPersona extends Model implements AuthenticatableContract, Authorizable
     protected $fillable = [
         'nombre',
     ];
- 
-
 }

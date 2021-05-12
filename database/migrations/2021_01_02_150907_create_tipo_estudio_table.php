@@ -13,7 +13,7 @@ class CreateTipoEstudioTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipoEstudio', function (Blueprint $table) {
+        Schema::create('tipoestudio', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTipoEstudioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TipoEstudio');
+        Schema::dropIfExists('tipoestudio');
     }
 }

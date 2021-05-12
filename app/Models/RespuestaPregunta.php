@@ -11,7 +11,7 @@ use Laravel\Lumen\Auth\Authorizable;
 
 class RespuestaPregunta extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    protected $table = 'respuestapregunta';
+    protected $table = 'respuesta_pregunta';
     use Authenticatable, Authorizable, HasFactory;
 
     /**
@@ -20,7 +20,7 @@ class RespuestaPregunta extends Model implements AuthenticatableContract, Author
      * @var array
      */
     protected $fillable = [
-        'respuesta', 'observaciones','persona_id','pregunta_id'
+        'respuesta', 'observaciones', 'persona_id', 'pregunta_id'
     ];
 
     public function personas()
@@ -32,6 +32,4 @@ class RespuestaPregunta extends Model implements AuthenticatableContract, Author
     {
         return $this->hasOne(Pregunta::class);
     }
-
-
 }

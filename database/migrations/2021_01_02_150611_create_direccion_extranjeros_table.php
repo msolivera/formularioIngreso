@@ -13,7 +13,7 @@ class CreateDireccionExtranjerosTable extends Migration
      */
     public function up()
     {
-        Schema::create('direccionExtranjeros', function (Blueprint $table) {
+        Schema::create('direccion_extranjeros', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_departamento_estado');
             $table->string('nombre_ciudad');
@@ -30,6 +30,6 @@ class CreateDireccionExtranjerosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DireccionExtranjeros');
+        Schema::dropIfExists('direccion_extranjeros');
     }
 }

@@ -31,6 +31,6 @@ class CreateOcupacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Ocupacion');
+        Schema::dropIfExists('ocupacion');
     }
 }

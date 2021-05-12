@@ -28,6 +28,6 @@ class CreateParenteScoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Parentesco');
+        Schema::dropIfExists('parentesco');
     }
 }

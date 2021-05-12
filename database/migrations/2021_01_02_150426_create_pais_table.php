@@ -27,6 +27,6 @@ class CreatePaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Pais');
+        Schema::dropIfExists('pais');
     }
 }

@@ -13,7 +13,7 @@ class CreateCuidadBarrioTable extends Migration
      */
     public function up()
     {
-        Schema::create('ciudad_Barrio', function (Blueprint $table) {
+        Schema::create('ciudad_barrio', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->unsignedBigInteger('departamento_id')->nullable()->default(0);
@@ -28,6 +28,6 @@ class CreateCuidadBarrioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Ciudad_Barrio');
+        Schema::dropIfExists('ciudad_barrio');
     }
 }

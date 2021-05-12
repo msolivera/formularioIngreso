@@ -20,18 +20,16 @@ class EstudioPersona extends Model implements AuthenticatableContract, Authoriza
      * @var array
      */
     protected $fillable = [
-        'anioEstudio', 'nombreInstituto','tipo_estudio_id', "persona_id"
+        'anioEstudio', 'nombreInstituto', 'tipo_estudio_id', "persona_id"
     ];
 
     public function persona()
     {
         return $this->hasOne(Persona::class);
-    }  
+    }
 
     public function tipoEstudio()
     {
         return $this->hasOne(TipoEstudio::class);
-    }  
-
-
+    }
 }

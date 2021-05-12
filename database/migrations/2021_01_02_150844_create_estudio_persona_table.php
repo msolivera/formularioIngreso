@@ -13,7 +13,7 @@ class CreateEstudioPersonaTable extends Migration
      */
     public function up()
     {
-        Schema::create('estudioPersona', function (Blueprint $table) {
+        Schema::create('estudiopersona', function (Blueprint $table) {
             $table->id();
             $table->string('anioEstudio');
             $table->string('nombreInstituto');
@@ -30,6 +30,6 @@ class CreateEstudioPersonaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('EstudioPersona');
+        Schema::dropIfExists('estudiopersona');
     }
 }
